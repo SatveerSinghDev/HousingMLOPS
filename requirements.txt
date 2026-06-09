@@ -3,3 +3,5 @@ pandas
 pytest
 flake8
 dvc
+fastapi
+uvicorn
