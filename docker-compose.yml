@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  web-api:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./models:/app/models
+
+  prometheus:
+    image: prom/prometheus:v2.45.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.xml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.xml"
+
+  grafana:
+    image: grafana/grafana:10.0.3
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus

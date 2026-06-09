@@ -5,3 +5,5 @@ flake8
 dvc
 fastapi
 uvicorn
+prometheus-fastapi-instrumentator
+evidently
